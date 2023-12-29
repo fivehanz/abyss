@@ -1,0 +1,3 @@
+# bootstrap ansible playbook for git repository clone, python dependencies installation, start server, nginx vhost installation, reload nginx
+# usage: ansible-playbook -i host.yml bootstrap.yml
+
