@@ -1,3 +1,24 @@
-# bootstrap ansible playbook for git repository clone, python dependencies installation, start server, nginx vhost installation, reload nginx
+###! NOT READY YET
+
+# bootstrap ansible playbook for git repository clone, python dependencies installation,
+# start server, nginx vhost installation, reload nginx
 # usage: ansible-playbook -i host.yml bootstrap.yml
 
+- hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: git repository clone
+      ansible.builtin.git:
+        repo: https://github.com/fivehanz/abyss.git
+        dest: /opt/abyss
+        single_branch: yes
+
+    - name: install python dependencies
+      ansible.builtin.shell:
+        cmd: pip install -r /opt/abyss/requirements.txt
+        cwd: /opt/abyss
+
+  roles:
+    - robertdebock.bootstrap
+    - geerlingguy.pip

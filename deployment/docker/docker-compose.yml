@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+    container_name: abyss_app
+    restart: unless-stopped
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://user:dbpassword@localhost:55432/abyss-db
+      - DJANGO_SETTINGS_MODULE=abyss.settings.prod
+      # Add other production-specific environment variables
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: unless-stopped
+    expose:
+      - "55432:5432"
+    environment:
+      - POSTGRES_DB=abyss-db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=dbpassword
+      # Add other PostgreSQL configurations as needed
+
+
