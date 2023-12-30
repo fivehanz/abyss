@@ -7,25 +7,32 @@ services:
       dockerfile: Dockerfile
     container_name: abyss_app
     restart: unless-stopped
-    expose:
-      - "8000"
+    ports:
+      - 8080:8000
+    networks:
+      - abyss-nw
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://user:dbpassword@localhost:55432/abyss-db
+      - DATABASE_URL=postgres://user:dbpassword@db:5432/abyss-db
       - DJANGO_SETTINGS_MODULE=abyss.settings.prod
-      # Add other production-specific environment variables
+      - DEBUG=True
 
   db:
     image: postgres:15-alpine
     container_name: postgres_db
     restart: unless-stopped
-    expose:
-      - "55432:5432"
+    networks:
+      - abyss-nw
+      - db
     environment:
       - POSTGRES_DB=abyss-db
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=dbpassword
       # Add other PostgreSQL configurations as needed
 
+networks:
+  abyss-nw:
+    driver: bridge
+  db:
 
