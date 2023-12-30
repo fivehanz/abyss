@@ -16,6 +16,7 @@ services:
     environment:
       - DATABASE_URL=postgres://user:dbpassword@db:5432/abyss-db
       - DJANGO_SETTINGS_MODULE=abyss.settings.prod
+      - ALLOW_HOST=abyss.hanz.lol
 
   db:
     image: postgres:15-bookworm
