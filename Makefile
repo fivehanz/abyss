@@ -9,9 +9,6 @@ recreate: compose-restart
 stop: compose-stop
 # deploy: deploy-api
 
-rtx:
-	# brew install libb2 openssl readline gettext
-	env PYTHON_CONFIGURE_OPTS="--enable-optimizations --disable-ipv6" env LDFLAGS="-fuse-ld=lld" ARCHFLAGS="-arch arm64" rtx i
 
 build-sass:
 	python manage.py sass ./website/static/website/src/custom.scss ./website/static/website/css/custom.css
