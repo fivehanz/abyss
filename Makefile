@@ -5,6 +5,8 @@ compose: compose-dev
 deps: deps-cms
 dev: dev-sass dev-cms
 migrate: cms-make-migrate
+recreate: compose-restart
+stop: compose-stop
 # deploy: deploy-api
 
 rtx:
@@ -30,11 +32,26 @@ dev-sass:
 	# cd api && bunx wrangler deploy src/index.ts --minify
 	#
 
+logs-db:
+	docker logs abyss_dev_postgres_db
+
+logs-web:
+	docker logs abyss_app_dev
+
+logs-nginx:
+	docker logs nginx_server
+
+compose-migrate:
+	docker exec -it abyss_app_dev make migrate
+
 compose-dev:
 	docker compose --file docker-compose.dev.yml up -d
 
 compose-restart:
 	docker compose --file docker-compose.dev.yml up -d --force-recreate
+
+compose-start:
+	docker compose --file docker-compose.dev.yml up -d
 
 compose-stop:
 	docker compose --file docker-compose.dev.yml down

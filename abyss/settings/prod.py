@@ -7,7 +7,12 @@ DEBUG = os.environ.get("DEBUG", False)
 SECRET_KEY = "k2iau58dqh4b!^v$&eyi$zwt_*mawsc_dpn1w$xy9ha))-&pfz"
 
 # Add your site's domain name(s) here.
-ALLOWED_HOSTS = ["localhost", "abyss.hanz.lol"]
+ALLOWED_HOSTS = [os.environ.get("ALLOW_HOST", "localhost")]
+
+CSRF_TRUSTED_ORIGINS = [
+        f"https://{os.environ.get('ALLOW_HOST', 'localhost')}",
+        f"http://{os.environ.get('ALLOW_HOST', 'localhost')}:8080" # dev environment
+    ]
 
 # To send email from the server, we recommend django_sendmail_backend
 # Or specify your own email backend such as an SMTP server.

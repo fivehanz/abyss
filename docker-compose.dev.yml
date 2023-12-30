@@ -32,19 +32,22 @@ services:
     environment:
       - DATABASE_URL=postgres://user:dbpassword@db:5432/abyss-db
       - DJANGO_SETTINGS_MODULE=abyss.settings.prod
-      # - DEBUG=True
+      - DEBUG=True
 
   db:
-    image: postgres:15-alpine
+    image: postgres:15-bookworm
     container_name: abyss_dev_postgres_db
     restart: unless-stopped
     networks:
       - abyss-nw
       - db
+    volumes:
+      - ./dev_data/postgresql/db:/var/lib/postgresql/db
     environment:
       - POSTGRES_DB=abyss-db
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=dbpassword
+      - PGDATA=/var/lib/postgresql/db
       # Add other PostgreSQL configurations as needed
 
 networks:
