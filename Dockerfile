@@ -16,7 +16,7 @@ ENV PYTHONUNBUFFERED=1 \
 # Install system packages required by Wagtail and Django.
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
     build-essential \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 # Use /app folder as a directory where the source code is stored.
 WORKDIR /app
@@ -27,6 +27,9 @@ COPY --chown=wagtail:wagtail . .
 # Install the project requirements.
 RUN pip install -r requirements.txt
 
+# Collect static files.
+RUN python manage.py collectstatic --noinput
+
 
 # Set this directory to be owned by the "wagtail" user. This Wagtail project
 # uses SQLite, the folder needs to be owned by the user that
@@ -35,9 +38,6 @@ RUN chown wagtail:wagtail /app
 
 # Use user "wagtail" to run the build commands below and the server itself.
 USER wagtail
-
-# Collect static files.
-RUN python manage.py collectstatic --noinput
 
 # Runtime command that executes when "docker run" is called, it does the
 # following:

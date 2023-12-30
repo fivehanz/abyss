@@ -1,7 +1,7 @@
 MAKEFLAGS += -j2
 
 default: build-sass
-# clean: clean-tailwind clean-cms
+compose: compose-dev
 deps: deps-cms
 dev: dev-sass dev-cms
 migrate: cms-make-migrate
@@ -28,3 +28,16 @@ dev-sass:
 
 # deploy-backend:
 	# cd api && bunx wrangler deploy src/index.ts --minify
+	#
+
+compose-dev:
+	docker compose --file docker-compose.dev.yml up -d
+
+compose-restart:
+	docker compose --file docker-compose.dev.yml up -d --force-recreate
+
+compose-stop:
+	docker compose --file docker-compose.dev.yml down
+
+compose-rebuild:
+	docker compose --file docker-compose.dev.yml up -d --build

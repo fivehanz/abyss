@@ -43,3 +43,4 @@ fly.toml
 
 deployment
 node_modules/
+dev_data
