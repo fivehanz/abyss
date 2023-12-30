@@ -25,7 +25,7 @@ WORKDIR /app
 COPY --chown=wagtail:wagtail . .
 
 # Install the project requirements.
-RUN pip install pipenv && python -m pipenv install
+RUN pip install -r requirements.txt
 
 # Collect static files.
 # RUN python manage.py collectstatic --noinput
