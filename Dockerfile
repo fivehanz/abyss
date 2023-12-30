@@ -25,10 +25,10 @@ WORKDIR /app
 COPY --chown=wagtail:wagtail . .
 
 # Install the project requirements.
-RUN pip install -r requirements.txt
+RUN pip install pipenv && python -m pipenv install
 
 # Collect static files.
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 
 # Set this directory to be owned by the "wagtail" user. This Wagtail project
