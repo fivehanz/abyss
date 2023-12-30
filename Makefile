@@ -17,7 +17,7 @@ build-sass:
 	python manage.py sass ./website/static/website/src/custom.scss ./website/static/website/css/custom.css
 
 deps-cms:
-	python -m pip install -r requirements-dev.txt
+	python -m pipenv install
 
 dev-cms:
 	python manage.py runserver
