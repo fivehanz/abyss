@@ -10,6 +10,7 @@ gunicorn = "==21.2.0"
 psycopg2-binary = "*"
 psycopg = "*"
 dj-database-url = "*"
+django-sass = "*"
 
 [dev-packages]
 
