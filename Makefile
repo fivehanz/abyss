@@ -23,7 +23,7 @@ cms-make-migrate:
 	python manage.py makemigrations && python manage.py migrate
 
 dev-sass:
-	python manage.py sass ./website/static/website/src/custom.scss ./website/static/website/css/custom.css --watch
+	python manage.py sass -t compressed ./website/static/website/src/custom.scss ./website/static/website/css/custom.min.css --watch
 
 # deploy-backend:
 	# cd api && bunx wrangler deploy src/index.ts --minify
