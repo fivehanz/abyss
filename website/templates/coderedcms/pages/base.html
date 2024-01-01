@@ -11,9 +11,7 @@
 
 {% block custom_assets %}
 {# Add your custom CSS here #}
-<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{% static 'website/css/custom.min.css' %}">
-
-<noscript><link rel="stylesheet" href="{% static 'website/css/custom.min.css' %}"></noscript>
+<link rel="stylesheet" href="{% static 'website/css/custom.min.css' %}">
 {% endblock %}
 
 {% block frontend_scripts %}
