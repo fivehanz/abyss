@@ -11,7 +11,7 @@ stop: compose-stop
 
 
 build-sass:
-	python manage.py sass ./website/static/website/src/custom.scss ./website/static/website/css/custom.css
+	python manage.py sass -t compressed ./website/static/website/src/custom.scss ./website/static/website/css/custom.min.css
 
 deps-cms:
 	python -m pipenv install
