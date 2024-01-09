@@ -3,7 +3,7 @@ import os
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", False)
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# ! TODO: SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "k2iau58dqh4b!^v$&eyi$zwt_*mawsc_dpn1w$xy9ha))-&pfz"
 
 # Add your site's domain name(s) here.
