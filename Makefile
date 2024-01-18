@@ -7,8 +7,28 @@ dev: dev-sass dev-cms
 migrate: cms-make-migrate
 recreate: compose-restart
 stop: compose-stop
-# deploy: deploy-api
+prod: prod-release
 
+# ! do not run as root
+prod-release:
+	sudo make prod-rebuild
+	sudo make prod-restart
+	sudo make prod-migrate
+	make prod-static-release
+	sudo nginx -s reload
+
+prod-rebuild:
+	docker compose --env-file .env --file ./deployment/docker/docker-compose.yml up -d --build
+prod-restart:
+	docker compose --env-file .env --file ./deployment/docker/docker-compose.yml up -d --force-recreate
+prod-migrate:
+	docker exec -it abyss_prod_app make migrate
+
+prod-static-release:
+	python3 -m pipenv install
+	python3 -m pipenv run python manage.py collectstatic --noinput --clear
+	python3 -m pipenv run python manage.py sass -t compressed ./website/static/website/src/custom.scss ./website/static/website/css/custom.min.css
+	python3 -m pipenv run python manage.py collectstatic --noinput
 
 build-sass:
 	python manage.py sass -t compressed ./website/static/website/src/custom.scss ./website/static/website/css/custom.min.css
@@ -24,10 +44,6 @@ cms-make-migrate:
 
 dev-sass:
 	python manage.py sass -t compressed ./website/static/website/src/custom.scss ./website/static/website/css/custom.min.css --watch
-
-# deploy-backend:
-	# cd api && bunx wrangler deploy src/index.ts --minify
-	#
 
 logs-db:
 	docker logs abyss_dev_postgres_db

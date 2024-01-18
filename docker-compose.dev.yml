@@ -6,7 +6,7 @@ services:
     container_name: nginx_server
     restart: unless-stopped
     ports:
-      - 8080:80
+      - "8080:80"
     networks:
       - web
       - abyss-nw
