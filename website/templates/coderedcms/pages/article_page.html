@@ -4,8 +4,9 @@
 
 {% block content %}
 <article class="crx-article">
+
   {% block article_header %}
-  <div class="container my-4 text-center">
+  <div class="container my-4">
     <h1>{{ self.title }}</h1>
     {% if self.caption %}
     <p class="lead">{{self.caption}}</p>
@@ -22,16 +23,18 @@
     </p>
   </div>
   {% endblock %}
+
   {% block article_cover_image %}
-  {% if self.cover_image %}
-  <div class="container mb-5">
-    {% image self.cover_image fill-1600x900 format-webp preserve-svg as cover_image %}
-    <img src="{{cover_image.url}}" class="w-100">
-  </div>
-  {% endif %}
+    {% if self.cover_image %}
+    <div class="container mb-5">
+      {% image self.cover_image fill-1600x900 format-webp preserve-svg as cover_image %}
+      <img src="{{cover_image.url}}" class="w-100">
+    </div>
+    {% endif %}
   {% endblock %}
+
   {% block article_body %}
-  <div class="container mx-auto article-body">
+  <div class="container fs-5 my-5">
     {% for block in self.body %}
     {% include_block block with settings=settings %}
     {% endfor %}
@@ -41,5 +44,6 @@
   {% block related_content %}
   {{ block.super }}
   {% endblock %}
+
 </article>
 {% endblock %}
