@@ -17,6 +17,7 @@ services:
       - DATABASE_URL=postgres://user:dbpassword@db:5432/abyss-db
       - DJANGO_SETTINGS_MODULE=abyss.settings.prod
       - ALLOW_HOST=abyss.hanz.lol
+      - RESEND_API_KEY=${RESEND_API_KEY}
 
   db:
     image: postgres:15-bookworm
