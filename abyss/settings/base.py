@@ -57,7 +57,26 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "django.contrib.sites",
+
+    # Third-party
+    'django_comments_xtd',
+    'django_comments',
 ]
+
+SITE_ID = 1
+
+COMMENTS_APP = 'django_comments_xtd'
+COMMENTS_XTD_MAX_THREAD_LEVEL = 2
+COMMENTS_XTD_CONFIRM_EMAIL = True
+DEFAULT_FROM_EMAIL = "abyss <abyss@mail.hanz.lol>"
+COMMENTS_XTD_SALT = "LJaKc0Tg7eFMWGFJCYlZPinPDarpnxGMso767U4PBYb8E2193zljjR50aeCgAbLkdJs6b43SryJ1OuwSGo72yC$7OLq"
+
+EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
+
+ANYMAIL = {
+    "RESEND_API_KEY": os.environ.get("RESEND_API_KEY"),
+}
 
 MIDDLEWARE = [
     # Save pages to cache. Must be FIRST.

@@ -10,6 +10,8 @@ psycopg2-binary = "*"
 psycopg = "*"
 dj-database-url = "*"
 django-sass = "*"
+django-comments-xtd = "*"
+django-anymail = {extras = ["resend"], version = "*"}
 
 [dev-packages]
 

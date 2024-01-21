@@ -1,6 +1,6 @@
 {% extends "coderedcms/pages/web_page.html" %}
 
-{% load wagtailadmin_tags wagtailcore_tags wagtailimages_tags coderedcms_tags %}
+{% load comments comments_xtd wagtailadmin_tags wagtailcore_tags wagtailimages_tags coderedcms_tags %}
 
 {% block content %}
 <article class="crx-article">
@@ -25,12 +25,12 @@
   {% endblock %}
 
   {% block article_cover_image %}
-    {% if self.cover_image %}
-    <div class="container mb-5">
-      {% image self.cover_image fill-1600x900 format-webp preserve-svg as cover_image %}
-      <img src="{{cover_image.url}}" class="w-100">
-    </div>
-    {% endif %}
+  {% if self.cover_image %}
+  <div class="container mb-5">
+    {% image self.cover_image fill-1600x900 format-webp preserve-svg as cover_image %}
+    <img src="{{cover_image.url}}" class="w-100">
+  </div>
+  {% endif %}
   {% endblock %}
 
   {% block article_body %}
@@ -44,6 +44,28 @@
   {% block related_content %}
   {{ block.super }}
   {% endblock %}
+
+  {% comment %}
+  {% get_comment_count for object as comment_count %}
+  <div class="py-4 text-center">
+    {{ comment_count }} comment{{ comment_count|pluralize }}
+    ha{{ comment_count|pluralize:"s,ve" }} been posted.
+  </div>
+
+  {% if comment_count %}
+  <hr/>
+  <div class="comments">
+    {% render_comment_list for object %}
+  </div>
+  {% endif %}
+
+  <div class="card card-block mb-5">
+    <div class="card-body">
+      <h4 class="card-title text-center pb-3">Post your comment</h4>
+      {% render_comment_form for object %}
+    </div>
+  </div>
+  {% endcomment %}
 
 </article>
 {% endblock %}

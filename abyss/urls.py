@@ -4,7 +4,7 @@ from coderedcms import urls as crx_urls
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include
-from django.urls import path
+from django.urls import path, re_path
 from wagtail.documents import urls as wagtaildocs_urls
 
 
@@ -16,6 +16,8 @@ urlpatterns = [
     path("docs/", include(wagtaildocs_urls)),
     # Search
     path("search/", include(crx_search_urls)),
+    # Comments
+    re_path(r'^comments/', include('django_comments_xtd.urls')),
     # For anything not caught by a more specific rule above, hand over to
     # the page serving mechanism. This should be the last pattern in
     # the list:
