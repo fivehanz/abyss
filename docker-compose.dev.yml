@@ -41,13 +41,13 @@ services:
     networks:
       - abyss-nw
       - db
-    volumes:
-      - ./dev_data/postgresql/db:/var/lib/postgresql/db
+    #    volumes:
+    #      - ./dev_data/postgresql/db:/var/lib/postgresql/db
     environment:
       - POSTGRES_DB=abyss-db
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=dbpassword
-      - PGDATA=/var/lib/postgresql/db
+      #      - PGDATA=/var/lib/postgresql/db
       # Add other PostgreSQL configurations as needed
 
 networks:

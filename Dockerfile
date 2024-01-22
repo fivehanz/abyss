@@ -26,11 +26,12 @@ WORKDIR /app
 # Copy the source code of the project into the container.
 COPY --chown=wagtail:wagtail . .
 
-# install granian server
-RUN pip --no-cache-dir install granian
+# install granian server and pipenv
+RUN pip --no-cache-dir install granian pipenv
 
 # Install the project requirements.
-RUN pip --no-cache-dir install -r requirements.txt
+RUN python -m pipenv requirements > requirements.txt && pip --no-cache-dir install -r requirements.txt
+RUN pip uninstall -y pipenv
 
 # Set permissions for the wagtail user.
 RUN chown wagtail:wagtail /app
