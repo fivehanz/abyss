@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/fivehanz/abyss/compare/v0.2.0...v0.3.0) (2024-01-22)
+
+
+### Features
+
+* use granian server ([eded384](https://github.com/fivehanz/abyss/commit/eded384afe7952e0e886afc4e523897cfc4365a6))
+
+
+### Bug Fixes
+
+* article layout ([fd2cf1f](https://github.com/fivehanz/abyss/commit/fd2cf1f9d61184e36d46e1b0772cc525294d2b9b))
+
 ## [0.2.0](https://github.com/fivehanz/abyss/compare/v0.1.0...v0.2.0) (2024-01-01)
 
 
